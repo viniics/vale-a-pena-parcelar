@@ -20,7 +20,7 @@ async function quantoRende(numParcelas, valorTotal) {
     const currentTax = await getCurrSelicTaxAndDate();
     const mensalInterest = calculaRendimentoMensal(currentTax.valor);
     const valorParcela = calculaValorParcela(numParcelas, valorTotal);
-    let currentVal = valorTotal; // O valor sera decrementado a cada mes que passa, simulando o pagamento da fatura e consequente debito da conta
+    let currentVal = valorTotal; // O valor sera decrementado a cada mes que passa, simulando o pagamento da fatura e consequente debito da conta, fazendo os rendimentos diminuírem
     let rendimentoFinal = 0;
     for (var i = 0; i < numParcelas; i++) {
         rendimentoFinal += currentVal * (mensalInterest / 100);
