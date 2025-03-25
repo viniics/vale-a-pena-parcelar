@@ -20,11 +20,12 @@ async function quantoRende(numParcelas, valorTotal) {
     const currentTax = await getCurrSelicTaxAndDate();
     const mensalInterest = calculaRendimentoMensal(currentTax.valor);
     const valorParcela = calculaValorParcela(numParcelas, valorTotal);
-    let currentVal = valorTotal; // O valor sera decrementado a cada mes que passa, simulando o pagamento da fatura e consequente debito da conta, fazendo os rendimentos diminuírem
-    let rendimentoFinal = 0;
+    let currentVal = valorTotal; let rendimentoFinal = 0;
     for (var i = 0; i < numParcelas; i++) {
         rendimentoFinal += currentVal * (mensalInterest / 100);
-        currentVal -= valorParcela;
+        currentVal -= valorParcela; // O valor atual eh decrementado a cada mes que passa, simulando o pagamento da fatura.
+                                    // Isso faz com que os rendimentos diminuam, ja que houve o debito da conta
+        
     }
     return rendimentoFinal.toFixed(2);
 }
@@ -33,3 +34,5 @@ async function quantoRende(numParcelas, valorTotal) {
     rendimento = await quantoRende(21, 250);
     console.log("Rendimento final: R$ " + rendimento);
 })()
+
+//TODO: Comparador: Vale a pena ou nao parcelar
